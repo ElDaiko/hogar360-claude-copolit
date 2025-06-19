@@ -61,6 +61,9 @@ export const ROUTES = {
   ADMIN_VENDEDORES: "/admin/vendedores",
   ADMIN_CATEGORIES: "/admin/categorias",
   ADMIN_LOCATIONS: "/admin/ubicaciones",
+  CASAS: "/casas",
+  VENDEDOR_CASAS: "/vendedor/casas",
+  VENDEDOR_PUBLICAR_CASA: "/vendedor/publicar-casa",
 } as const;
 
 // Local Storage Keys

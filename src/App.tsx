@@ -11,6 +11,8 @@ import { ListarCategoriasPage } from "./pages/ListarCategoriasPage";
 import { UbicacionesPage } from "./pages/UbicacionesPage";
 import { BuscarUbicacionesPage } from "./pages/BuscarUbicacionesPage";
 import { UsuariosVendedoresPage } from "./pages/UsuariosVendedoresPage";
+import { CasasPage } from "./pages/CasasPage";
+import { PublicarCasaPage } from "./pages/PublicarCasaPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -64,13 +66,30 @@ function App() {
               <UbicacionesPage />
             </ProtectedRoute>
           }
-        />
+        />{" "}
         {/* Admin Routes - HU#5 */}
         <Route
           path={ROUTES.ADMIN_VENDEDORES}
           element={
             <ProtectedRoute requiredRoles={["admin"]}>
               <UsuariosVendedoresPage />
+            </ProtectedRoute>
+          }
+        />{" "}
+        {/* Vendedor Routes - HU#6 */}
+        <Route
+          path={ROUTES.VENDEDOR_CASAS}
+          element={
+            <ProtectedRoute requiredRoles={["vendedor"]}>
+              <CasasPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.VENDEDOR_PUBLICAR_CASA}
+          element={
+            <ProtectedRoute requiredRoles={["vendedor"]}>
+              <PublicarCasaPage />
             </ProtectedRoute>
           }
         />

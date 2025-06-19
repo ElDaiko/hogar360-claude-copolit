@@ -7,3 +7,5 @@ export { useDeleteUbicacion } from "./useDeleteUbicacion";
 export { useSearchUbicaciones } from "./useSearchUbicaciones";
 export { useCreateUsuarioVendedor } from "./useCreateUsuarioVendedor";
 export { useUsuariosVendedores } from "./useUsuariosVendedores";
+export { useCreateCasa } from "./useCreateCasa";
+export { useCasas } from "./useCasas";

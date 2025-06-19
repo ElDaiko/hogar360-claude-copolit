@@ -60,15 +60,14 @@ export const SidebarNavigation = ({
         label: "Propiedades",
       },
     ];
-
     const vendedorItems: MenuItem[] = [
       {
-        to: ROUTES.PROPERTIES,
+        to: ROUTES.VENDEDOR_CASAS,
         icon: "fas fa-building",
         label: "Mis Propiedades",
       },
       {
-        to: ROUTES.PROPERTY_CREATE,
+        to: ROUTES.VENDEDOR_PUBLICAR_CASA,
         icon: "fas fa-plus-circle",
         label: "Publicar Casa",
       },
