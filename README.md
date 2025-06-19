@@ -35,6 +35,28 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 - Layout optimizado según diseño Figma
 - Responsive design completo
 
+### ✅ HU#2 - Listar Categorías
+
+- Visualización de categorías existentes
+- Paginación y filtros
+- Integración con sistema de gestión
+
+### ✅ HU#3 - Gestión de Ubicaciones
+
+- CRUD completo de ubicaciones (Admin)
+- Formulario de creación con campos: ciudad, departamento, descripciones
+- Validaciones Zod con límites de caracteres (50 para nombres, 120 para descripciones)
+- Tabla de ubicaciones existentes con funcionalidad de eliminación
+- Modal de confirmación para eliminación
+- Modal de advertencia para departamentos duplicados
+- No permite crear ubicaciones con departamentos existentes
+- 8 ubicaciones por defecto de Colombia
+- 5 categorías por defecto (Apartamento, Casa, Penthouse, Oficina, Local Comercial)
+- Acceso restringido solo para administradores
+- Integración completa con sidebar de navegación
+- Hooks reutilizables siguiendo patrones del proyecto
+- Funciona completamente con datos mockeados
+
 ## Estructura del Proyecto
 
 ```
@@ -45,13 +67,29 @@ src/
 │   ├── organisms/       # Combinaciones complejas
 │   └── templates/       # Layouts y plantillas
 ├── pages/               # Páginas de la aplicación
+│   ├── CategoriasPage.tsx
+│   ├── UbicacionesPage.tsx
+│   ├── LoginPage.tsx
+│   └── DashboardPage.tsx
 ├── shared/              # Recursos compartidos
 │   ├── constants/       # Constantes globales
 │   ├── hooks/          # Custom hooks
+│   │   ├── useAuth.ts
+│   │   ├── useCreateCategoria.ts
+│   │   ├── useListarCategorias.ts
+│   │   ├── useCreateUbicacion.ts
+│   │   ├── useUbicaciones.ts
+│   │   └── useDeleteUbicacion.ts
 │   ├── store/          # Estado global (Zustand)
 │   ├── types/          # Tipos TypeScript
 │   └── validations/    # Esquemas de validación
+│       ├── authSchemas.ts
+│       ├── categoriaSchemas.ts
+│       └── ubicacionSchemas.ts
 └── services/           # Servicios y API calls
+    ├── authService.ts
+    ├── categoriaService.ts
+    └── ubicacionService.ts
 ```
 
 ## Desarrollo
@@ -102,8 +140,10 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 ### Estado actual:
 
 - ✅ **HU#8**: `feature/HU-8-autenticacion` - Completada y mergeada
-- ✅ **HU#1**: `feature/HU-1-gestion-categorias` - Completada y lista para review
-- 🔄 **Próxima HU**: HU#2 - Gestión de Ubicaciones
+- ✅ **HU#1**: `feature/HU-1-gestion-categorias` - Completada y mergeada
+- ✅ **HU#2**: `feature/HU-2-listar-categorias` - Completada y mergeada
+- ✅ **HU#3**: `feature/HU-3-crear-ubicaciones` - Completada y lista para review
+- 🔄 **Próxima HU**: HU#4 - Gestión de Usuarios
 
 ### Comandos útiles:
 
@@ -125,12 +165,13 @@ git pull origin develop
 ## Historias de Usuario Pendientes
 
 - ✅ HU#1: Gestión de Categorías de Inmuebles - **COMPLETADA**
-- HU#2: Gestión de Ubicaciones
-- HU#3: Gestión de Usuarios
-- HU#4: Publicación de Propiedades
-- HU#5: Búsqueda de Propiedades
-- HU#6: Agendar Visitas
-- HU#7: Gestión de Horarios
+- ✅ HU#2: Listar Categorías - **COMPLETADA**
+- ✅ HU#3: Gestión de Ubicaciones - **COMPLETADA**
+- 🔄 HU#4: Gestión de Usuarios
+- HU#5: Publicación de Propiedades
+- HU#6: Búsqueda de Propiedades
+- HU#7: Agendar Visitas
+- HU#8: Gestión de Horarios
 
 ## Contribución
 
@@ -142,10 +183,3 @@ git pull origin develop
 ## Licencia
 
 Este proyecto es privado y confidencial.
-...reactDom.configs.recommended.rules,
-},
-})
-
-```
-
-```
