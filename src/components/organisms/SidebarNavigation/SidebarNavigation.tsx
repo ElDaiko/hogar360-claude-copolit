@@ -21,7 +21,6 @@ export const SidebarNavigation = ({
   // Menu items based on user role
   const getMenuItems = (): MenuItem[] => {
     if (!user) return [];
-
     const commonItems: MenuItem[] = [
       {
         to: ROUTES.DASHBOARD,
@@ -32,6 +31,11 @@ export const SidebarNavigation = ({
         to: ROUTES.CATEGORIES,
         icon: "fas fa-tags",
         label: "Ver Categorías",
+      },
+      {
+        to: ROUTES.SEARCH_LOCATIONS,
+        icon: "fas fa-search-location",
+        label: "Buscar Ubicaciones",
       },
     ];
 

@@ -33,7 +33,7 @@ export const Layout = ({ children }: LayoutProps) => {
       {/* Mobile Sidebar Overlay */}
       {isMobileSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          className="fixed inset-0 bg-opacity-50 z-30 lg:hidden"
           onClick={() => setIsMobileSidebarOpen(false)}
         />
       )}{" "}

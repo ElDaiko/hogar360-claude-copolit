@@ -117,6 +117,25 @@ export interface GetUbicacionesResponse {
   };
 }
 
+export interface SearchUbicacionesRequest {
+  query?: string; // Texto de búsqueda para ciudad o departamento
+  orderBy?: "ciudad" | "departamento";
+  orderDirection?: "asc" | "desc";
+  page?: number;
+  limit?: number;
+}
+
+export interface SearchUbicacionesResponse {
+  data: Ubicacion[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+  searchQuery?: string;
+}
+
 class UbicacionService {
   async createUbicacion(
     data: CreateUbicacionRequest
@@ -346,6 +365,89 @@ class UbicacionService {
           error instanceof Error
             ? error.message
             : "Error al eliminar la ubicación",
+      };
+    }
+  }
+
+  // Helper function to normalize text for search (remove accents, convert to lowercase)
+  private normalizeText(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  async searchUbicaciones(
+    params: SearchUbicacionesRequest = {}
+  ): Promise<ApiResponse<SearchUbicacionesResponse>> {
+    try {
+      const {
+        query = "",
+        orderBy = "ciudad",
+        orderDirection = "asc",
+        page = 1,
+        limit = 10,
+      } = params;
+
+      // Filter ubicaciones based on search query
+      let filteredUbicaciones = [...mockUbicaciones];
+
+      if (query.trim()) {
+        const normalizedQuery = this.normalizeText(query.trim());
+        filteredUbicaciones = mockUbicaciones.filter((ubicacion) => {
+          const normalizedCiudad = this.normalizeText(ubicacion.ciudad);
+          const normalizedDepartamento = this.normalizeText(
+            ubicacion.departamento
+          );
+
+          return (
+            normalizedCiudad.includes(normalizedQuery) ||
+            normalizedDepartamento.includes(normalizedQuery)
+          );
+        });
+      }
+
+      // Sort results
+      filteredUbicaciones.sort((a, b) => {
+        const aValue = orderBy === "ciudad" ? a.ciudad : a.departamento;
+        const bValue = orderBy === "ciudad" ? b.ciudad : b.departamento;
+
+        const comparison = aValue.localeCompare(bValue, "es", {
+          sensitivity: "base",
+        });
+        return orderDirection === "asc" ? comparison : -comparison;
+      });
+
+      // Apply pagination
+      const total = filteredUbicaciones.length;
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedData = filteredUbicaciones.slice(startIndex, endIndex);
+
+      const response: SearchUbicacionesResponse = {
+        data: paginatedData,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+        searchQuery: query.trim() || undefined,
+      };
+
+      return {
+        success: true,
+        data: response,
+        message: "Búsqueda realizada exitosamente",
+      };
+    } catch (error) {
+      console.error("Error searching ubicaciones:", error);
+      return {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Error al buscar ubicaciones",
       };
     }
   }
