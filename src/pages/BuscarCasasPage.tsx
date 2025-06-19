@@ -3,6 +3,37 @@ import { Layout } from "../components/templates/Layout";
 import { useListarCasasPublicas } from "../shared/hooks";
 import type { PropertyFilters } from "../shared/types";
 
+// Componente para mostrar imagen con fallback a ícono
+const CasaImageWithFallback: React.FC<{ src?: string; alt: string }> = ({
+  src,
+  alt,
+}) => {
+  const [imageError, setImageError] = useState(false);
+
+  if (!src || imageError) {
+    return (
+      <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+        <svg
+          className="w-12 h-12 text-gray-400"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover"
+      onError={() => setImageError(true)}
+    />
+  );
+};
+
 const BuscarCasasPage: React.FC = () => {
   const [searchFilters, setSearchFilters] = useState<PropertyFilters>({
     ordenarPor: "fecha",
@@ -258,35 +289,16 @@ const BuscarCasasPage: React.FC = () => {
                 key={casa.id}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
               >
-                {/* Image */}
+                {/* Image */}{" "}
                 <div className="relative h-48 bg-gray-200">
-                  {casa.imagenes && casa.imagenes.length > 0 ? (
-                    <img
-                      src={casa.imagenes[0]}
-                      alt={casa.nombre}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src =
-                          "https://via.placeholder.com/400x200/f3f4f6/9ca3af?text=Imagen+no+disponible";
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                      <svg
-                        className="w-12 h-12 text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                      </svg>
-                    </div>
-                  )}
+                  <CasaImageWithFallback
+                    src={casa.imagenes?.[0]}
+                    alt={casa.nombre}
+                  />
                   <span className="absolute top-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                     {casa.categoriaInmueble.nombre}
                   </span>
                 </div>
-
                 {/* Content */}
                 <div className="p-5">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">

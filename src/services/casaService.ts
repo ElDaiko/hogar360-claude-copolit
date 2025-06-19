@@ -40,10 +40,7 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-15T10:00:00.000Z",
     vendedorId: "vendedor-1",
     area: 350,
-    imagenes: [
-      "https://example.com/casa1-1.jpg",
-      "https://example.com/casa1-2.jpg",
-    ],
+    imagenes: [],
     createdAt: "2024-06-15T10:00:00.000Z",
     updatedAt: "2024-06-15T10:00:00.000Z",
   },
@@ -76,7 +73,7 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-16T14:30:00.000Z",
     vendedorId: "vendedor-2",
     area: 95,
-    imagenes: ["https://example.com/apto1-1.jpg"],
+    imagenes: [],
     createdAt: "2024-06-16T14:30:00.000Z",
     updatedAt: "2024-06-16T14:30:00.000Z",
   },
@@ -106,20 +103,18 @@ const mockCasas: Casa[] = [
     },
     fechaPublicacionActiva: "2024-06-25",
     estadoPublicacion: "PUBLICACION_PAUSADA" as EstadoPublicacion,
-    fechaPublicacion: "2024-06-17T09:15:00.000Z",    vendedorId: "vendedor-3",
+    fechaPublicacion: "2024-06-17T09:15:00.000Z",
+    vendedorId: "vendedor-3",
     area: 180,
-    imagenes: [
-      "https://example.com/pent1-1.jpg",
-      "https://example.com/pent1-2.jpg",
-      "https://example.com/pent1-3.jpg",
-    ],
+    imagenes: [],
     createdAt: "2024-06-17T09:15:00.000Z",
     updatedAt: "2024-06-17T09:15:00.000Z",
   },
   {
     id: "casa-4",
     nombre: "Casa Familiar en Cali",
-    descripcion: "Amplia casa familiar en conjunto cerrado con zonas verdes, parqueadero y salón comunal.",
+    descripcion:
+      "Amplia casa familiar en conjunto cerrado con zonas verdes, parqueadero y salón comunal.",
     categoriaInmueble: {
       id: "categoria-1",
       nombre: "Casa",
@@ -144,14 +139,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-18T08:00:00.000Z",
     vendedorId: "vendedor-2",
     area: 280,
-    imagenes: ["https://example.com/casa4-1.jpg"],
+    imagenes: [],
     createdAt: "2024-06-18T08:00:00.000Z",
     updatedAt: "2024-06-18T08:00:00.000Z",
   },
   {
     id: "casa-5",
     nombre: "Apartamento Estudiantes Barranquilla",
-    descripcion: "Cómodo apartamento cerca a universidades, ideal para estudiantes o profesionales jóvenes.",
+    descripcion:
+      "Cómodo apartamento cerca a universidades, ideal para estudiantes o profesionales jóvenes.",
     categoriaInmueble: {
       id: "categoria-2",
       nombre: "Apartamento",
@@ -176,14 +172,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-18T11:30:00.000Z",
     vendedorId: "vendedor-4",
     area: 55,
-    imagenes: ["https://example.com/apto5-1.jpg"],
+    imagenes: [],
     createdAt: "2024-06-18T11:30:00.000Z",
     updatedAt: "2024-06-18T11:30:00.000Z",
   },
   {
     id: "casa-6",
     nombre: "Local Comercial Zona Rosa",
-    descripcion: "Excelente local comercial en la Zona Rosa de Bogotá, ideal para restaurante o tienda.",
+    descripcion:
+      "Excelente local comercial en la Zona Rosa de Bogotá, ideal para restaurante o tienda.",
     categoriaInmueble: {
       id: "categoria-5",
       nombre: "Local Comercial",
@@ -208,14 +205,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-18T16:45:00.000Z",
     vendedorId: "vendedor-1",
     area: 120,
-    imagenes: ["https://example.com/local6-1.jpg"],
+    imagenes: [],
     createdAt: "2024-06-18T16:45:00.000Z",
     updatedAt: "2024-06-18T16:45:00.000Z",
   },
   {
     id: "casa-7",
     nombre: "Oficina Ejecutiva El Poblado",
-    descripcion: "Moderna oficina en El Poblado, Medellín. Completamente amoblada con vista panorámica.",
+    descripcion:
+      "Moderna oficina en El Poblado, Medellín. Completamente amoblada con vista panorámica.",
     categoriaInmueble: {
       id: "categoria-4",
       nombre: "Oficina",
@@ -240,14 +238,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-18T13:20:00.000Z",
     vendedorId: "vendedor-3",
     area: 80,
-    imagenes: ["https://example.com/oficina7-1.jpg"],
+    imagenes: [],
     createdAt: "2024-06-18T13:20:00.000Z",
     updatedAt: "2024-06-18T13:20:00.000Z",
   },
   {
     id: "casa-8",
     nombre: "Casa Campestre Chía",
-    descripcion: "Hermosa casa campestre en Chía con jardín, BBQ y vista a los cerros orientales.",
+    descripcion:
+      "Hermosa casa campestre en Chía con jardín, BBQ y vista a los cerros orientales.",
     categoriaInmueble: {
       id: "categoria-1",
       nombre: "Casa",
@@ -272,13 +271,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2024-06-18T15:10:00.000Z",
     vendedorId: "vendedor-5",
     area: 400,
-    imagenes: ["https://example.com/casa8-1.jpg", "https://example.com/casa8-2.jpg"],
+    imagenes: [],
     createdAt: "2024-06-18T15:10:00.000Z",
-    updatedAt: "2024-06-18T15:10:00.000Z",  },
+    updatedAt: "2024-06-18T15:10:00.000Z",
+  },
   {
     id: "casa-9",
     nombre: "Apartamento Loft Centro Histórico",
-    descripcion: "Elegante loft en el centro histórico de Cartagena, completamente restaurado con acabados modernos y aire colonial.",
+    descripcion:
+      "Elegante loft en el centro histórico de Cartagena, completamente restaurado con acabados modernos y aire colonial.",
     categoriaInmueble: {
       id: "categoria-2",
       nombre: "Apartamento",
@@ -303,14 +304,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T10:00:00.000Z",
     vendedorId: "vendedor-2",
     area: 110,
-    imagenes: ["https://example.com/loft9-1.jpg", "https://example.com/loft9-2.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T10:00:00.000Z",
     updatedAt: "2025-06-18T10:00:00.000Z",
   },
   {
     id: "casa-10",
     nombre: "Casa Moderna Santa Marta",
-    descripcion: "Casa moderna de 3 niveles cerca a la playa en Santa Marta. Piscina privada, terraza y garaje cubierto.",
+    descripcion:
+      "Casa moderna de 3 niveles cerca a la playa en Santa Marta. Piscina privada, terraza y garaje cubierto.",
     categoriaInmueble: {
       id: "categoria-1",
       nombre: "Casa",
@@ -335,14 +337,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T12:30:00.000Z",
     vendedorId: "vendedor-3",
     area: 320,
-    imagenes: ["https://example.com/casa10-1.jpg", "https://example.com/casa10-2.jpg", "https://example.com/casa10-3.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T12:30:00.000Z",
     updatedAt: "2025-06-18T12:30:00.000Z",
   },
   {
     id: "casa-11",
     nombre: "Apartamento Ejecutivo Bucaramanga",
-    descripcion: "Moderno apartamento ejecutivo en el centro financiero de Bucaramanga. Ideal para profesionales.",
+    descripcion:
+      "Moderno apartamento ejecutivo en el centro financiero de Bucaramanga. Ideal para profesionales.",
     categoriaInmueble: {
       id: "categoria-2",
       nombre: "Apartamento",
@@ -367,14 +370,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T14:15:00.000Z",
     vendedorId: "vendedor-1",
     area: 85,
-    imagenes: ["https://example.com/apto11-1.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T14:15:00.000Z",
     updatedAt: "2025-06-18T14:15:00.000Z",
   },
   {
     id: "casa-12",
     nombre: "Penthouse Exclusivo Pereira",
-    descripcion: "Impresionante penthouse con vista panorámica de la ciudad cafetera. Acabados de lujo y espacios amplios.",
+    descripcion:
+      "Impresionante penthouse con vista panorámica de la ciudad cafetera. Acabados de lujo y espacios amplios.",
     categoriaInmueble: {
       id: "categoria-3",
       nombre: "Penthouse",
@@ -399,14 +403,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T16:00:00.000Z",
     vendedorId: "vendedor-4",
     area: 200,
-    imagenes: ["https://example.com/pent12-1.jpg", "https://example.com/pent12-2.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T16:00:00.000Z",
     updatedAt: "2025-06-18T16:00:00.000Z",
   },
   {
     id: "casa-13",
     nombre: "Casa Familiar Villavicencio",
-    descripcion: "Espaciosa casa familiar en conjunto cerrado con piscina, zona BBQ y áreas verdes. Perfecta para familias grandes.",
+    descripcion:
+      "Espaciosa casa familiar en conjunto cerrado con piscina, zona BBQ y áreas verdes. Perfecta para familias grandes.",
     categoriaInmueble: {
       id: "categoria-1",
       nombre: "Casa",
@@ -431,14 +436,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T09:45:00.000Z",
     vendedorId: "vendedor-5",
     area: 380,
-    imagenes: ["https://example.com/casa13-1.jpg", "https://example.com/casa13-2.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T09:45:00.000Z",
     updatedAt: "2025-06-18T09:45:00.000Z",
   },
   {
     id: "casa-14",
     nombre: "Local Comercial Armenia",
-    descripcion: "Excelente local comercial en el centro de Armenia, ideal para cualquier tipo de negocio. Muy buena ubicación.",
+    descripcion:
+      "Excelente local comercial en el centro de Armenia, ideal para cualquier tipo de negocio. Muy buena ubicación.",
     categoriaInmueble: {
       id: "categoria-5",
       nombre: "Local Comercial",
@@ -463,14 +469,15 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T11:20:00.000Z",
     vendedorId: "vendedor-2",
     area: 90,
-    imagenes: ["https://example.com/local14-1.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T11:20:00.000Z",
     updatedAt: "2025-06-18T11:20:00.000Z",
   },
   {
     id: "casa-15",
     nombre: "Apartamento Estudiantil Manizales",
-    descripcion: "Cómodo apartamento cerca a universidades en Manizales. Perfecto para estudiantes con todos los servicios incluidos.",
+    descripcion:
+      "Cómodo apartamento cerca a universidades en Manizales. Perfecto para estudiantes con todos los servicios incluidos.",
     categoriaInmueble: {
       id: "categoria-2",
       nombre: "Apartamento",
@@ -495,7 +502,7 @@ const mockCasas: Casa[] = [
     fechaPublicacion: "2025-06-18T17:30:00.000Z",
     vendedorId: "vendedor-3",
     area: 60,
-    imagenes: ["https://example.com/apto15-1.jpg"],
+    imagenes: [],
     createdAt: "2025-06-18T17:30:00.000Z",
     updatedAt: "2025-06-18T17:30:00.000Z",
   },
@@ -795,13 +802,17 @@ class CasaService {
                   new Date(b.fechaPublicacion).getTime();
                 break;
               case "ubicacion":
-                comparison = a.ubicacion.ciudad.localeCompare(b.ubicacion.ciudad);
+                comparison = a.ubicacion.ciudad.localeCompare(
+                  b.ubicacion.ciudad
+                );
                 break;
               default:
                 comparison = 0;
             }
 
-            return filters.ordenarDireccion === "desc" ? -comparison : comparison;
+            return filters.ordenarDireccion === "desc"
+              ? -comparison
+              : comparison;
           });
         }
       }

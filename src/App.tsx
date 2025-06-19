@@ -18,12 +18,12 @@ import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
 function App() {
-  return (    <Router>
+  return (
+    <Router>
       <Routes>
         {/* Public Routes */}
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.BUSCAR_CASAS} element={<BuscarCasasPage />} />
-        
         {/* Protected Routes */}
         <Route
           path={ROUTES.DASHBOARD}
@@ -41,7 +41,8 @@ function App() {
               <ListarCategoriasPage />
             </ProtectedRoute>
           }
-        />        {/* HU#4 - Search Locations (All Roles) */}
+        />{" "}
+        {/* HU#4 - Search Locations (All Roles) */}
         <Route
           path={ROUTES.SEARCH_LOCATIONS}
           element={
@@ -50,7 +51,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        
         {/* HU#7 - Buscar Casas (All Roles) */}
         <Route
           path="/app/buscar-casas"
@@ -60,7 +60,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        
         {/* Admin Routes - HU#1 */}
         <Route
           path={ROUTES.ADMIN_CATEGORIES}

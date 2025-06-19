@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import type { Casa, PropertyFilters } from '../types';
-import { casaService } from '../../services';
+import { useState, useEffect, useCallback } from "react";
+import type { Casa, PropertyFilters } from "../types";
+import { casaService } from "../../services";
 
 interface UseListarCasasPublicasState {
   casas: Casa[];
@@ -41,7 +41,7 @@ export const useListarCasasPublicas = (
   const [filters, setFilters] = useState<PropertyFilters>(initialFilters);
   const [currentPage, setPage] = useState(initialPage);
   const fetchCasas = useCallback(async () => {
-    setState(prev => ({ ...prev, loading: true, error: null }));
+    setState((prev) => ({ ...prev, loading: true, error: null }));
 
     try {
       const response = await casaService.listarCasasPublicas(
@@ -51,27 +51,27 @@ export const useListarCasasPublicas = (
       );
 
       if (response.success && response.data) {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           casas: response.data!.data,
           pagination: response.data!.pagination,
           loading: false,
         }));
       } else {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           casas: [],
           loading: false,
-          error: response.message || 'Error al cargar las casas',
+          error: response.message || "Error al cargar las casas",
         }));
       }
     } catch (error) {
-      console.error('Error fetching public houses:', error);
-      setState(prev => ({
+      console.error("Error fetching public houses:", error);
+      setState((prev) => ({
         ...prev,
         casas: [],
         loading: false,
-        error: 'Error inesperado al cargar las casas',
+        error: "Error inesperado al cargar las casas",
       }));
     }
   }, [currentPage, filters, state.pagination.limit]);

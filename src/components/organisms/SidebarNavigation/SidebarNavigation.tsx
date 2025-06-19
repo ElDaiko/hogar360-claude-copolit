@@ -20,7 +20,8 @@ export const SidebarNavigation = ({
   const { user, hasRole } = useAuth();
   // Menu items based on user role
   const getMenuItems = (): MenuItem[] => {
-    if (!user) return [];    const commonItems: MenuItem[] = [
+    if (!user) return [];
+    const commonItems: MenuItem[] = [
       {
         to: ROUTES.DASHBOARD,
         icon: "fas fa-home",
