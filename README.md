@@ -57,6 +57,21 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 - Hooks reutilizables siguiendo patrones del proyecto
 - Funciona completamente con datos mockeados
 
+### ✅ HU#4 - Búsqueda de Ubicaciones en Tiempo Real
+
+- Funcionalidad de búsqueda disponible para todos los roles
+- Búsqueda en tiempo real con debounce (300ms)
+- Normalización de texto (ignora tildes y mayúsculas/minúsculas)
+- Filtrado por ciudad y departamento simultáneamente
+- Ordenamiento ascendente/descendente por ciudad o departamento
+- Paginación completa con navegación intuitiva
+- UI responsiva: tabla en desktop + tarjetas en móvil
+- Paddings y espaciado optimizados
+- Patrón de búsqueda substring inclusivo
+- Hook reutilizable `useSearchUbicaciones`
+- Ruta `/buscar-ubicaciones` accesible para todos
+- Integración completa con sidebar de navegación
+
 ## Estructura del Proyecto
 
 ```
@@ -69,6 +84,7 @@ src/
 ├── pages/               # Páginas de la aplicación
 │   ├── CategoriasPage.tsx
 │   ├── UbicacionesPage.tsx
+│   ├── BuscarUbicacionesPage.tsx
 │   ├── LoginPage.tsx
 │   └── DashboardPage.tsx
 ├── shared/              # Recursos compartidos
@@ -79,7 +95,8 @@ src/
 │   │   ├── useListarCategorias.ts
 │   │   ├── useCreateUbicacion.ts
 │   │   ├── useUbicaciones.ts
-│   │   └── useDeleteUbicacion.ts
+│   │   ├── useDeleteUbicacion.ts
+│   │   └── useSearchUbicaciones.ts
 │   ├── store/          # Estado global (Zustand)
 │   ├── types/          # Tipos TypeScript
 │   └── validations/    # Esquemas de validación
@@ -142,8 +159,9 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 - ✅ **HU#8**: `feature/HU-8-autenticacion` - Completada y mergeada
 - ✅ **HU#1**: `feature/HU-1-gestion-categorias` - Completada y mergeada
 - ✅ **HU#2**: `feature/HU-2-listar-categorias` - Completada y mergeada
-- ✅ **HU#3**: `feature/HU-3-crear-ubicaciones` - Completada y lista para review
-- 🔄 **Próxima HU**: HU#4 - Gestión de Usuarios
+- ✅ **HU#3**: `feature/HU-3-crear-ubicaciones` - Completada y mergeada
+- ✅ **HU#4**: `feature/HU-4-buscar-ubicaciones` - Completada y lista para review
+- 🔄 **Próxima HU**: HU#5 - Gestión de Usuarios
 
 ### Comandos útiles:
 
@@ -167,11 +185,12 @@ git pull origin develop
 - ✅ HU#1: Gestión de Categorías de Inmuebles - **COMPLETADA**
 - ✅ HU#2: Listar Categorías - **COMPLETADA**
 - ✅ HU#3: Gestión de Ubicaciones - **COMPLETADA**
-- 🔄 HU#4: Gestión de Usuarios
-- HU#5: Publicación de Propiedades
-- HU#6: Búsqueda de Propiedades
-- HU#7: Agendar Visitas
-- HU#8: Gestión de Horarios
+- ✅ HU#4: Búsqueda de Ubicaciones - **COMPLETADA**
+- 🔄 HU#5: Gestión de Usuarios
+- HU#6: Publicación de Propiedades
+- HU#7: Búsqueda de Propiedades
+- HU#8: Agendar Visitas
+- HU#9: Gestión de Horarios
 
 ## Contribución
 
