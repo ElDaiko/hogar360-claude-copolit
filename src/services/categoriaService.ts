@@ -83,7 +83,7 @@ export const categoriaService = {
         errors: ["Error interno del servidor"],
       };
     }
-  },  // Get all categories (for display purposes) - HU#2
+  }, // Get all categories (for display purposes) - HU#2
   getCategorias: async (options?: {
     page?: number;
     limit?: number;
@@ -114,12 +114,15 @@ export const categoriaService = {
       return {
         success: true,
         data: filteredCategorias,
-        pagination: options?.page && options?.limit ? {
-          currentPage: options.page,
-          totalPages: Math.ceil(mockCategorias.length / options.limit),
-          totalItems: mockCategorias.length,
-          itemsPerPage: options.limit,
-        } : undefined,
+        pagination:
+          options?.page && options?.limit
+            ? {
+                currentPage: options.page,
+                totalPages: Math.ceil(mockCategorias.length / options.limit),
+                totalItems: mockCategorias.length,
+                itemsPerPage: options.limit,
+              }
+            : undefined,
       };
     } catch {
       return {

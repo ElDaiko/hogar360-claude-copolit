@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface PaginationProps {
   currentPage: number;
@@ -17,7 +17,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   const getVisiblePages = () => {
     const pages: number[] = [];
-    const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    const startPage = Math.max(
+      1,
+      currentPage - Math.floor(maxVisiblePages / 2)
+    );
     const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
     for (let i = startPage; i <= endPage; i++) {
@@ -50,7 +53,9 @@ export const Pagination: React.FC<PaginationProps> = ({
             1
           </button>
           {visiblePages[0] > 2 && (
-            <span className="px-3 py-2 text-sm font-medium text-gray-500">...</span>
+            <span className="px-3 py-2 text-sm font-medium text-gray-500">
+              ...
+            </span>
           )}
         </>
       )}
@@ -62,8 +67,8 @@ export const Pagination: React.FC<PaginationProps> = ({
           onClick={() => onPageChange(page)}
           className={`px-3 py-2 text-sm font-medium border ${
             page === currentPage
-              ? 'text-blue-600 bg-blue-50 border-blue-500'
-              : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+              ? "text-blue-600 bg-blue-50 border-blue-500"
+              : "text-gray-500 bg-white border-gray-300 hover:bg-gray-50 hover:text-gray-700"
           }`}
         >
           {page}
@@ -74,7 +79,9 @@ export const Pagination: React.FC<PaginationProps> = ({
       {visiblePages[visiblePages.length - 1] < totalPages && (
         <>
           {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
-            <span className="px-3 py-2 text-sm font-medium text-gray-500">...</span>
+            <span className="px-3 py-2 text-sm font-medium text-gray-500">
+              ...
+            </span>
           )}
           <button
             onClick={() => onPageChange(totalPages)}

@@ -57,7 +57,10 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               <div className="flex-1 max-w-md">
-                <label htmlFor="search" className="block text-sm font-normal text-gray-700 mb-1">
+                <label
+                  htmlFor="search"
+                  className="block text-sm font-normal text-gray-700 mb-1"
+                >
                   Buscar categorías
                 </label>
                 <div className="relative">
@@ -74,7 +77,7 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
                   />
                 </div>
               </div>
-              
+
               {searchTerm && (
                 <Button
                   variant="outline"
@@ -125,7 +128,8 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
                     {selectedCategoria.descripcion}
                   </p>
                   <div className="mt-2 text-xs text-blue-600">
-                    ID: {selectedCategoria.id} • Creada: {new Date(selectedCategoria.createdAt).toLocaleDateString()}
+                    ID: {selectedCategoria.id} • Creada:{" "}
+                    {new Date(selectedCategoria.createdAt).toLocaleDateString()}
                   </div>
                 </div>
                 <button
@@ -146,7 +150,9 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
             {loading ? (
               <div className="flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                <span className="ml-2 text-gray-600">Cargando categorías...</span>
+                <span className="ml-2 text-gray-600">
+                  Cargando categorías...
+                </span>
               </div>
             ) : categorias.length === 0 ? (
               /* Empty State */
@@ -160,7 +166,8 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
                 <p className="text-gray-600 mb-4">
                   {searchTerm ? (
                     <>
-                      No hay categorías que coincidan con "<strong>{searchTerm}</strong>".
+                      No hay categorías que coincidan con "
+                      <strong>{searchTerm}</strong>".
                       <br />
                       Intenta con diferentes términos de búsqueda.
                     </>
@@ -189,7 +196,7 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
                           <i className="fas fa-check text-white text-xs"></i>
                         </div>
                       )}
-                      
+
                       <div className="p-6">
                         {/* Category Header */}
                         <div className="mb-4">
@@ -218,11 +225,13 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
                               Inmueble
                             </span>
                           </div>
-                          
+
                           <div className="flex items-center justify-between text-xs text-gray-500">
                             <span className="flex items-center">
                               <i className="fas fa-calendar mr-1"></i>
-                              {new Date(categoria.createdAt).toLocaleDateString()}
+                              {new Date(
+                                categoria.createdAt
+                              ).toLocaleDateString()}
                             </span>
                           </div>
 
@@ -230,7 +239,11 @@ export const ListarCategoriasPage: React.FC<ListarCategoriasPageProps> = ({
                           {showSelection && (
                             <div className="pt-3 border-t border-gray-100">
                               <Button
-                                variant={selectedCategoria?.id === categoria.id ? "primary" : "outline"}
+                                variant={
+                                  selectedCategoria?.id === categoria.id
+                                    ? "primary"
+                                    : "outline"
+                                }
                                 size="sm"
                                 className="w-full"
                                 onClick={(e: React.MouseEvent) => {

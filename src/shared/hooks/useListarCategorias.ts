@@ -43,7 +43,8 @@ export const useListarCategorias = (
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [searchTerm, setSearchTermState] = useState("");
-  const [selectedCategoria, setSelectedCategoria] = useState<CategoriaInmueble | null>(null);
+  const [selectedCategoria, setSelectedCategoria] =
+    useState<CategoriaInmueble | null>(null);
 
   // Load categories with current filters - HU#2 implementation
   const loadCategorias = useCallback(async () => {
@@ -75,11 +76,14 @@ export const useListarCategorias = (
   }, [currentPage, pageSize, searchTerm]);
 
   // Page management
-  const setPage = useCallback((page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  }, [totalPages]);
+  const setPage = useCallback(
+    (page: number) => {
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    },
+    [totalPages]
+  );
 
   // Search management - HU#2 requirement
   const setSearchTerm = useCallback((term: string) => {
