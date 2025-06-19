@@ -18,7 +18,6 @@ export const CategoriasPage = () => {
     useCreateCategoria();
   const [categorias, setCategorias] = useState<CategoriaInmueble[]>([]);
   const [loadingCategorias, setLoadingCategorias] = useState(false);
-
   // Modal states
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [categoryToDelete, setCategoryToDelete] =
@@ -26,6 +25,7 @@ export const CategoriasPage = () => {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
 
   const {
     register,
@@ -73,9 +73,19 @@ export const CategoriasPage = () => {
         setCategorias(response.data);
       }
     } else if (error) {
-      // Show error modal for server validation errors (like duplicate names)
-      setErrorMessage(error);
-      setShowErrorModal(true);
+      // Check if error is about duplicate name
+      if (
+        error.toLowerCase().includes("nombre") &&
+        (error.toLowerCase().includes("repetir") ||
+          error.toLowerCase().includes("existe") ||
+          error.toLowerCase().includes("duplicado"))
+      ) {
+        setShowDuplicateModal(true);
+      } else {
+        // Show error modal for other server validation errors
+        setErrorMessage(error);
+        setShowErrorModal(true);
+      }
       clearMessages(); // Clear the error from the hook
     }
   };
@@ -121,10 +131,13 @@ export const CategoriasPage = () => {
     setCategoryToDelete(null);
     setDeleteLoading(false);
   };
-
   const handleErrorModalClose = () => {
     setShowErrorModal(false);
     setErrorMessage("");
+  };
+
+  const handleDuplicateModalClose = () => {
+    setShowDuplicateModal(false);
   };
 
   // Only admin can access this page
@@ -358,6 +371,16 @@ export const CategoriasPage = () => {
           message={errorMessage}
           confirmText="Entendido"
           cancelText="Cerrar"
+          type="warning"
+        />
+        {/* Duplicate Name Modal */}
+        <ConfirmDialog
+          isOpen={showDuplicateModal}
+          onClose={handleDuplicateModalClose}
+          onConfirm={handleDuplicateModalClose}
+          title="Nombre Duplicado"
+          message="Ya existe una categoría con este nombre. Por favor, elige un nombre diferente para la categoría."
+          confirmText="Entendido"
           type="warning"
         />
       </div>
