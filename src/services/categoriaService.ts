@@ -30,6 +30,22 @@ const mockCategorias: CategoriaInmueble[] = [
     createdAt: new Date("2024-01-17").toISOString(),
     updatedAt: new Date("2024-01-17").toISOString(),
   },
+  {
+    id: "4",
+    nombre: "Oficina",
+    descripcion:
+      "Espacios comerciales para oficinas y actividades empresariales",
+    createdAt: new Date("2024-01-18").toISOString(),
+    updatedAt: new Date("2024-01-18").toISOString(),
+  },
+  {
+    id: "5",
+    nombre: "Local Comercial",
+    descripcion:
+      "Locales destinados para actividades comerciales, tiendas y negocios",
+    createdAt: new Date("2024-01-19").toISOString(),
+    updatedAt: new Date("2024-01-19").toISOString(),
+  },
 ];
 
 // Simulate API delay

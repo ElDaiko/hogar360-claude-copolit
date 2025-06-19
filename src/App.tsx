@@ -8,6 +8,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { CategoriasPage } from "./pages/CategoriasPage";
 import { ListarCategoriasPage } from "./pages/ListarCategoriasPage";
+import { UbicacionesPage } from "./pages/UbicacionesPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -17,7 +18,6 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-
         {/* Protected Routes */}
         <Route
           path={ROUTES.DASHBOARD}
@@ -27,7 +27,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         {/* HU#2 - List Categories (All Roles) */}
         <Route
           path={ROUTES.CATEGORIES}
@@ -36,8 +35,7 @@ function App() {
               <ListarCategoriasPage />
             </ProtectedRoute>
           }
-        />
-
+        />{" "}
         {/* Admin Routes - HU#1 */}
         <Route
           path={ROUTES.ADMIN_CATEGORIES}
@@ -46,11 +44,18 @@ function App() {
               <CategoriasPage />
             </ProtectedRoute>
           }
+        />{" "}
+        {/* Admin Routes - HU#3 */}
+        <Route
+          path={ROUTES.ADMIN_LOCATIONS}
+          element={
+            <ProtectedRoute requiredRoles={["admin"]}>
+              <UbicacionesPage />
+            </ProtectedRoute>
+          }
         />
-
         {/* Redirect root to dashboard */}
         <Route path="/" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
-
         {/* Catch all - redirect to login */}
         <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
       </Routes>
