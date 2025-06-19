@@ -24,6 +24,17 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 - Dashboard personalizado por rol
 - Navegación lateral (sidebar) responsiva
 
+### ✅ HU#1 - Gestión de Categorías de Inmuebles
+
+- CRUD completo de categorías de inmuebles (Admin)
+- Formulario de creación con validación avanzada
+- Tabla de categorías existentes con paginación
+- Modal de confirmación para eliminación
+- Modal de advertencia para nombres duplicados
+- Validación local y del servidor
+- Layout optimizado según diseño Figma
+- Responsive design completo
+
 ## Estructura del Proyecto
 
 ```
@@ -91,7 +102,8 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 ### Estado actual:
 
 - ✅ **HU#8**: `feature/HU-8-autenticacion` - Completada y mergeada
-- 🔄 **Próxima HU**: Por definir
+- ✅ **HU#1**: `feature/HU-1-gestion-categorias` - Completada y lista para review
+- 🔄 **Próxima HU**: HU#2 - Gestión de Ubicaciones
 
 ### Comandos útiles:
 
@@ -112,7 +124,7 @@ git pull origin develop
 
 ## Historias de Usuario Pendientes
 
-- HU#1: Gestión de Categorías de Inmuebles
+- ✅ HU#1: Gestión de Categorías de Inmuebles - **COMPLETADA**
 - HU#2: Gestión de Ubicaciones
 - HU#3: Gestión de Usuarios
 - HU#4: Publicación de Propiedades
