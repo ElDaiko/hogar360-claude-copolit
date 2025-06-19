@@ -1,5 +1,7 @@
 import type { ApiResponse } from "../shared/types";
 import type { Ubicacion } from "../shared/types";
+// TODO: Uncomment when backend is implemented
+// import { getAuthHeaders } from "../shared/utils/authUtils";
 
 // Mock data for testing without backend
 const mockUbicaciones: Ubicacion[] = [
@@ -211,16 +213,14 @@ class UbicacionService {
         success: true,
         data: mockResponse,
         message: "Ubicaciones obtenidas exitosamente",
-      };
-
-      // Uncomment this when backend is ready:
+      };      // Uncomment this when backend is ready:
       /*
+      // Remember to uncomment the getAuthHeaders import at the top
       const response = await fetch(
-        `${this.baseUrl}?page=${page}&limit=${limit}`,
-        {
+        `${this.baseUrl}?page=${page}&limit=${limit}`,        {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            ...getAuthHeaders(),
           },
         }
       );

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SidebarNavigation } from "../../organisms/SidebarNavigation";
 import { useAuth } from "../../../shared/hooks/useAuth";
+import { ROUTES } from "../../../shared/constants";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,7 +12,9 @@ export const Layout = ({ children }: LayoutProps) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { user, logout, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -23,10 +27,19 @@ export const Layout = ({ children }: LayoutProps) => {
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
-
-  const handleLogout = () => {
-    logout();
-    setIsUserMenuOpen(false);
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      setIsUserMenuOpen(false);
+      await logout();
+      navigate(ROUTES.LOGIN, { replace: true });
+    } catch (error) {
+      console.error("Error during logout:", error);
+      // Force navigation even if logout fails
+      navigate(ROUTES.LOGIN, { replace: true });
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
   return (
     <div className="min-h-screen bg-gray-50">
@@ -93,13 +106,22 @@ export const Layout = ({ children }: LayoutProps) => {
                       <p className="text-xs text-gray-500 capitalize">
                         {user?.rol}
                       </p>
-                    </div>
-                    <button
+                    </div>                    <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors flex items-center"
+                      disabled={isLoggingOut || isLoading}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <i className="fas fa-sign-out-alt text-gray-400 mr-3"></i>
-                      Cerrar sesión
+                      {isLoggingOut ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin text-gray-400 mr-3"></i>
+                          Cerrando sesión...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-sign-out-alt text-gray-400 mr-3"></i>
+                          Cerrar sesión
+                        </>
+                      )}
                     </button>
                   </div>
                 </>

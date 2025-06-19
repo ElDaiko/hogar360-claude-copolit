@@ -66,17 +66,23 @@ export const useAuth = () => {
       setLoading(false);
     }
   };
-
   const logout = async () => {
     try {
       setLoading(true);
+      setError(null);
+      // Call the logout service
       await authService.logout();
+      // Clear the store (this also clears localStorage due to persist)
       logoutStore();
+      // Clear any other localStorage items that might contain auth data
+      localStorage.removeItem("token");
       setLoginAttempts(0);
     } catch (error) {
       console.error("Logout error:", error);
       // Force logout even if service fails
       logoutStore();
+      localStorage.removeItem("token");
+      setLoginAttempts(0);
     } finally {
       setLoading(false);
     }
