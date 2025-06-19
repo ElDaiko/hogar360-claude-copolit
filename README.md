@@ -72,6 +72,30 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 - Ruta `/buscar-ubicaciones` accesible para todos
 - Integración completa con sidebar de navegación
 
+### ✅ HU#5 - Gestión de Usuarios Vendedores
+
+- CRUD completo de usuarios vendedores (Solo Admin)
+- Formulario de creación con validación completa y UX mejorada
+- Campos: nombre, apellido, documento, celular, fecha de nacimiento, correo, contraseña
+- Validación de edad mínima (18 años) con lógica de fechas
+- Selección de fecha de nacimiento con dropdowns intuitivos (día, mes, año)
+- Años ordenados de más reciente a más antiguo con separadores por décadas
+- Validación de días dinámicos según mes/año (no permite 31 de febrero)
+- Indicador de fortaleza de contraseña en tiempo real
+- Verificación de correo y documento únicos
+- Encriptación simulada de contraseñas
+- Lista paginada de usuarios vendedores existentes
+- UI responsiva: tabla en desktop + tarjetas en móvil
+- Modal de confirmación para eliminación de usuarios
+- 8 usuarios vendedores por defecto para desarrollo/pruebas
+- Modales con efecto blur azulado en lugar de fondo negro
+- Hooks reutilizables: `useCreateUsuarioVendedor`, `useUsuariosVendedores`
+- Tipos TypeScript completos y validación Zod
+- Servicio mock con lógica de negocio completa
+- Acceso restringido solo para administradores
+- Integración completa con sidebar de navegación
+- Documentación completa de usuarios por defecto (USUARIOS_VENDEDORES.md)
+
 ## Estructura del Proyecto
 
 ```
@@ -85,6 +109,7 @@ src/
 │   ├── CategoriasPage.tsx
 │   ├── UbicacionesPage.tsx
 │   ├── BuscarUbicacionesPage.tsx
+│   ├── UsuariosVendedoresPage.tsx
 │   ├── LoginPage.tsx
 │   └── DashboardPage.tsx
 ├── shared/              # Recursos compartidos
@@ -96,17 +121,21 @@ src/
 │   │   ├── useCreateUbicacion.ts
 │   │   ├── useUbicaciones.ts
 │   │   ├── useDeleteUbicacion.ts
-│   │   └── useSearchUbicaciones.ts
+│   │   ├── useSearchUbicaciones.ts
+│   │   ├── useCreateUsuarioVendedor.ts
+│   │   └── useUsuariosVendedores.ts
 │   ├── store/          # Estado global (Zustand)
 │   ├── types/          # Tipos TypeScript
 │   └── validations/    # Esquemas de validación
 │       ├── authSchemas.ts
 │       ├── categoriaSchemas.ts
-│       └── ubicacionSchemas.ts
+│       ├── ubicacionSchemas.ts
+│       └── usuarioSchemas.ts
 └── services/           # Servicios y API calls
     ├── authService.ts
     ├── categoriaService.ts
-    └── ubicacionService.ts
+    ├── ubicacionService.ts
+    └── usuarioService.ts
 ```
 
 ## Desarrollo
@@ -160,8 +189,9 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 - ✅ **HU#1**: `feature/HU-1-gestion-categorias` - Completada y mergeada
 - ✅ **HU#2**: `feature/HU-2-listar-categorias` - Completada y mergeada
 - ✅ **HU#3**: `feature/HU-3-crear-ubicaciones` - Completada y mergeada
-- ✅ **HU#4**: `feature/HU-4-buscar-ubicaciones` - Completada y lista para review
-- 🔄 **Próxima HU**: HU#5 - Gestión de Usuarios
+- ✅ **HU#4**: `feature/HU-4-buscar-ubicaciones` - Completada y mergeada
+- ✅ **HU#5**: `feature/HU-5-crear-usuario-vendedor` - Completada y lista para review
+- 🔄 **Próxima HU**: HU#6 - Publicación de Propiedades
 
 ### Comandos útiles:
 
@@ -186,8 +216,8 @@ git pull origin develop
 - ✅ HU#2: Listar Categorías - **COMPLETADA**
 - ✅ HU#3: Gestión de Ubicaciones - **COMPLETADA**
 - ✅ HU#4: Búsqueda de Ubicaciones - **COMPLETADA**
-- 🔄 HU#5: Gestión de Usuarios
-- HU#6: Publicación de Propiedades
+- ✅ HU#5: Gestión de Usuarios Vendedores - **COMPLETADA**
+- 🔄 HU#6: Publicación de Propiedades
 - HU#7: Búsqueda de Propiedades
 - HU#8: Agendar Visitas
 - HU#9: Gestión de Horarios

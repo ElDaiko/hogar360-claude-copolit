@@ -14,6 +14,30 @@ export interface User {
 
 export type UserRole = "admin" | "vendedor" | "comprador";
 
+// Request types for creating users
+export interface CreateUsuarioVendedorRequest {
+  nombre: string;
+  apellido: string;
+  documentoIdentidad: string;
+  celular: string;
+  fechaNacimiento: string; // formato YYYY-MM-DD
+  correo: string;
+  clave: string;
+}
+
+export interface CreateUsuarioVendedorResponse {
+  id: string;
+  nombre: string;
+  apellido: string;
+  documentoIdentidad: string;
+  celular: string;
+  fechaNacimiento: string;
+  correo: string;
+  rol: UserRole;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Location types
 export interface Ubicacion {
   id: string;

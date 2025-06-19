@@ -38,7 +38,6 @@ export const SidebarNavigation = ({
         label: "Buscar Ubicaciones",
       },
     ];
-
     const adminItems: MenuItem[] = [
       {
         to: ROUTES.ADMIN_CATEGORIES,
@@ -51,9 +50,9 @@ export const SidebarNavigation = ({
         label: "Ubicaciones",
       },
       {
-        to: ROUTES.ADMIN_USERS,
-        icon: "fas fa-users",
-        label: "Usuarios",
+        to: ROUTES.ADMIN_VENDEDORES,
+        icon: "fas fa-user-tie",
+        label: "Usuarios Vendedores",
       },
       {
         to: ROUTES.PROPERTIES,
