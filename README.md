@@ -60,11 +60,44 @@ npm run build
 ## GitFlow
 
 Este proyecto utiliza GitFlow para el manejo de ramas:
+
+### Ramas principales:
 - `main`: Rama principal de producción
-- `develop`: Rama de desarrollo
-- `feature/HU-*`: Ramas para cada Historia de Usuario
-- `release/*`: Ramas para preparar releases
-- `hotfix/*`: Ramas para correcciones urgentes
+- `develop`: Rama de desarrollo donde se integran las features
+
+### Ramas de trabajo:
+- `feature/HU-X-nombre`: Ramas para cada Historia de Usuario
+- `release/v*`: Ramas para preparar releases
+- `hotfix/nombre`: Ramas para correcciones urgentes
+
+### Flujo de trabajo:
+1. **Nueva HU**: `git checkout develop && git checkout -b feature/HU-X-nombre`
+2. **Desarrollo**: Desarrollar la funcionalidad en la rama feature
+3. **Commit**: `git add . && git commit -m "feat(HU-X): descripción"`
+4. **Push**: `git push -u origin feature/HU-X-nombre`
+5. **Pull Request**: Crear PR desde GitHub para merger a develop
+6. **Merge**: Después de review, merger a develop
+7. **Cleanup**: Eliminar rama feature
+
+### Estado actual:
+- ✅ **HU#8**: `feature/HU-8-autenticacion` - Completada y mergeada
+- 🔄 **Próxima HU**: Por definir
+
+### Comandos útiles:
+```bash
+# Ver estado del repositorio
+git status
+git branch -a
+
+# Crear nueva rama para HU
+git checkout develop
+git pull origin develop
+git checkout -b feature/HU-X-nombre
+
+# Sincronizar con remoto
+git fetch --all
+git pull origin develop
+```
 
 ## Historias de Usuario Pendientes
 
