@@ -83,15 +83,43 @@ export const categoriaService = {
         errors: ["Error interno del servidor"],
       };
     }
-  },
-  // Get all categories (for display purposes)
-  getCategorias: async (): Promise<ApiResponse<CategoriaInmueble[]>> => {
+  },  // Get all categories (for display purposes) - HU#2
+  getCategorias: async (options?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+  }): Promise<ApiResponse<CategoriaInmueble[]>> => {
     await delay(500);
 
     try {
+      let filteredCategorias = [...mockCategorias];
+
+      // Apply search filter if provided - HU#2 requirement
+      if (options?.search) {
+        const searchTerm = options.search.toLowerCase();
+        filteredCategorias = filteredCategorias.filter(
+          (categoria) =>
+            categoria.nombre.toLowerCase().includes(searchTerm) ||
+            categoria.descripcion.toLowerCase().includes(searchTerm)
+        );
+      }
+
+      // Apply pagination if provided - HU#2 requirement
+      if (options?.page && options?.limit) {
+        const startIndex = (options.page - 1) * options.limit;
+        const endIndex = startIndex + options.limit;
+        filteredCategorias = filteredCategorias.slice(startIndex, endIndex);
+      }
+
       return {
         success: true,
-        data: [...mockCategorias],
+        data: filteredCategorias,
+        pagination: options?.page && options?.limit ? {
+          currentPage: options.page,
+          totalPages: Math.ceil(mockCategorias.length / options.limit),
+          totalItems: mockCategorias.length,
+          itemsPerPage: options.limit,
+        } : undefined,
       };
     } catch {
       return {

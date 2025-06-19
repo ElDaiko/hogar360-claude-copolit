@@ -116,6 +116,12 @@ export interface ApiResponse<T> {
   data?: T;
   message?: string;
   errors?: string[];
+  pagination?: {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    itemsPerPage: number;
+  };
 }
 
 export interface PaginatedResponse<T> {
