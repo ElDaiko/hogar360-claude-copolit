@@ -20,14 +20,17 @@ export const useAuth = () => {
   } = useAuthStore();
 
   const [loginAttempts, setLoginAttempts] = useState(0);
-
   const login = async (credentials: LoginCredentials) => {
     try {
       setLoading(true);
       clearError();
 
       const response = await authService.login(credentials);
-      loginStore(response.data.user, response.data.token);
+      if (response.success && response.data) {
+        loginStore(response.data.user, response.data.token);
+      } else {
+        throw new Error(response.message || "Error de inicio de sesión");
+      }
 
       setLoginAttempts(0); // Reset attempts on successful login
       return response;
@@ -41,14 +44,17 @@ export const useAuth = () => {
       setLoading(false);
     }
   };
-
   const register = async (userData: RegisterVendedorData) => {
     try {
       setLoading(true);
       clearError();
 
       const response = await authService.register(userData);
-      loginStore(response.data.user, response.data.token);
+      if (response.success && response.data) {
+        loginStore(response.data.user, response.data.token);
+      } else {
+        throw new Error(response.message || "Error de registro");
+      }
 
       return response;
     } catch (error) {

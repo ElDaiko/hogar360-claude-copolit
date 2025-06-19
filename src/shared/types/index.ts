@@ -34,6 +34,11 @@ export interface CategoriaInmueble {
   updatedAt: string;
 }
 
+export interface CreateCategoriaInmueble {
+  nombre: string;
+  descripcion: string;
+}
+
 // Property types
 export interface Casa {
   id: string;
@@ -107,9 +112,10 @@ export interface AuthResponse {
 
 // API Response types
 export interface ApiResponse<T> {
-  data: T;
-  message: string;
   success: boolean;
+  data?: T;
+  message?: string;
+  errors?: string[];
 }
 
 export interface PaginatedResponse<T> {
