@@ -10,6 +10,7 @@ import { CategoriasPage } from "./pages/CategoriasPage";
 import { ListarCategoriasPage } from "./pages/ListarCategoriasPage";
 import { UbicacionesPage } from "./pages/UbicacionesPage";
 import { BuscarUbicacionesPage } from "./pages/BuscarUbicacionesPage";
+import { UsuariosVendedoresPage } from "./pages/UsuariosVendedoresPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -61,6 +62,15 @@ function App() {
           element={
             <ProtectedRoute requiredRoles={["admin"]}>
               <UbicacionesPage />
+            </ProtectedRoute>
+          }
+        />
+        {/* Admin Routes - HU#5 */}
+        <Route
+          path={ROUTES.ADMIN_VENDEDORES}
+          element={
+            <ProtectedRoute requiredRoles={["admin"]}>
+              <UsuariosVendedoresPage />
             </ProtectedRoute>
           }
         />

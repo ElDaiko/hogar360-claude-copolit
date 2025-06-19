@@ -5,3 +5,5 @@ export { useCreateUbicacion } from "./useCreateUbicacion";
 export { useUbicaciones } from "./useUbicaciones";
 export { useDeleteUbicacion } from "./useDeleteUbicacion";
 export { useSearchUbicaciones } from "./useSearchUbicaciones";
+export { useCreateUsuarioVendedor } from "./useCreateUsuarioVendedor";
+export { useUsuariosVendedores } from "./useUsuariosVendedores";

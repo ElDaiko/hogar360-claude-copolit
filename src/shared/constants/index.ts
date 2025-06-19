@@ -58,6 +58,7 @@ export const ROUTES = {
   PROFILE: "/perfil",
   ADMIN: "/admin",
   ADMIN_USERS: "/admin/usuarios",
+  ADMIN_VENDEDORES: "/admin/vendedores",
   ADMIN_CATEGORIES: "/admin/categorias",
   ADMIN_LOCATIONS: "/admin/ubicaciones",
 } as const;
