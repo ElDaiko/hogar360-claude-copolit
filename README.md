@@ -1,9 +1,11 @@
 # Hogar360 - Plataforma Inmobiliaria
 
 ## Descripción
+
 Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeScript, Vite 5 y TailwindCSS. La plataforma permite a usuarios administradores, vendedores y compradores gestionar propiedades inmobiliarias de manera eficiente.
 
 ## Tecnologías Utilizadas
+
 - **Frontend**: React 18 + TypeScript + Vite 5
 - **Estilos**: TailwindCSS
 - **Arquitectura**: Atomic Design + LIFT
@@ -14,12 +16,24 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 ## Características Implementadas
 
 ### ✅ HU#8 - Autenticación de Usuarios
+
 - Sistema de login con validación
 - Gestión de sesiones con Zustand
 - Rutas protegidas por rol
 - Roles: Administrador, Vendedor, Comprador
 - Dashboard personalizado por rol
 - Navegación lateral (sidebar) responsiva
+
+### ✅ HU#1 - Gestión de Categorías de Inmuebles
+
+- CRUD completo de categorías de inmuebles (Admin)
+- Formulario de creación con validación avanzada
+- Tabla de categorías existentes con paginación
+- Modal de confirmación para eliminación
+- Modal de advertencia para nombres duplicados
+- Validación local y del servidor
+- Layout optimizado según diseño Figma
+- Responsive design completo
 
 ## Estructura del Proyecto
 
@@ -43,16 +57,19 @@ src/
 ## Desarrollo
 
 ### Instalación
+
 ```bash
 npm install
 ```
 
 ### Ejecutar en desarrollo
+
 ```bash
 npm run dev
 ```
 
 ### Build para producción
+
 ```bash
 npm run build
 ```
@@ -60,15 +77,54 @@ npm run build
 ## GitFlow
 
 Este proyecto utiliza GitFlow para el manejo de ramas:
+
+### Ramas principales:
+
 - `main`: Rama principal de producción
-- `develop`: Rama de desarrollo
-- `feature/HU-*`: Ramas para cada Historia de Usuario
-- `release/*`: Ramas para preparar releases
-- `hotfix/*`: Ramas para correcciones urgentes
+- `develop`: Rama de desarrollo donde se integran las features
+
+### Ramas de trabajo:
+
+- `feature/HU-X-nombre`: Ramas para cada Historia de Usuario
+- `release/v*`: Ramas para preparar releases
+- `hotfix/nombre`: Ramas para correcciones urgentes
+
+### Flujo de trabajo:
+
+1. **Nueva HU**: `git checkout develop && git checkout -b feature/HU-X-nombre`
+2. **Desarrollo**: Desarrollar la funcionalidad en la rama feature
+3. **Commit**: `git add . && git commit -m "feat(HU-X): descripción"`
+4. **Push**: `git push -u origin feature/HU-X-nombre`
+5. **Pull Request**: Crear PR desde GitHub para merger a develop
+6. **Merge**: Después de review, merger a develop
+7. **Cleanup**: Eliminar rama feature
+
+### Estado actual:
+
+- ✅ **HU#8**: `feature/HU-8-autenticacion` - Completada y mergeada
+- ✅ **HU#1**: `feature/HU-1-gestion-categorias` - Completada y lista para review
+- 🔄 **Próxima HU**: HU#2 - Gestión de Ubicaciones
+
+### Comandos útiles:
+
+```bash
+# Ver estado del repositorio
+git status
+git branch -a
+
+# Crear nueva rama para HU
+git checkout develop
+git pull origin develop
+git checkout -b feature/HU-X-nombre
+
+# Sincronizar con remoto
+git fetch --all
+git pull origin develop
+```
 
 ## Historias de Usuario Pendientes
 
-- HU#1: Gestión de Categorías de Inmuebles
+- ✅ HU#1: Gestión de Categorías de Inmuebles - **COMPLETADA**
 - HU#2: Gestión de Ubicaciones
 - HU#3: Gestión de Usuarios
 - HU#4: Publicación de Propiedades
@@ -86,7 +142,10 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 ## Licencia
 
 Este proyecto es privado y confidencial.
-    ...reactDom.configs.recommended.rules,
-  },
+...reactDom.configs.recommended.rules,
+},
 })
+
+```
+
 ```

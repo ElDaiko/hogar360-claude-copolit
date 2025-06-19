@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import { CategoriasPage } from "./pages/CategoriasPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -22,6 +23,16 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Admin Routes - HU#1 */}
+        <Route
+          path={ROUTES.ADMIN_CATEGORIES}
+          element={
+            <ProtectedRoute requiredRoles={["admin"]}>
+              <CategoriasPage />
             </ProtectedRoute>
           }
         />
