@@ -13,6 +13,7 @@ import { BuscarUbicacionesPage } from "./pages/BuscarUbicacionesPage";
 import { UsuariosVendedoresPage } from "./pages/UsuariosVendedoresPage";
 import { CasasPage } from "./pages/CasasPage";
 import { PublicarCasaPage } from "./pages/PublicarCasaPage";
+import BuscarCasasPage from "./pages/BuscarCasasPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path={ROUTES.BUSCAR_CASAS} element={<BuscarCasasPage />} />
         {/* Protected Routes */}
         <Route
           path={ROUTES.DASHBOARD}
@@ -39,13 +41,22 @@ function App() {
               <ListarCategoriasPage />
             </ProtectedRoute>
           }
-        />
+        />{" "}
         {/* HU#4 - Search Locations (All Roles) */}
         <Route
           path={ROUTES.SEARCH_LOCATIONS}
           element={
             <ProtectedRoute>
               <BuscarUbicacionesPage />
+            </ProtectedRoute>
+          }
+        />
+        {/* HU#7 - Buscar Casas (All Roles) */}
+        <Route
+          path="/app/buscar-casas"
+          element={
+            <ProtectedRoute>
+              <BuscarCasasPage />
             </ProtectedRoute>
           }
         />

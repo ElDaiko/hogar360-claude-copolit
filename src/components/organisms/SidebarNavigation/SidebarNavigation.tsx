@@ -28,6 +28,11 @@ export const SidebarNavigation = ({
         label: "Dashboard",
       },
       {
+        to: ROUTES.BUSCAR_CASAS,
+        icon: "fas fa-search",
+        label: "Buscar Casas",
+      },
+      {
         to: ROUTES.CATEGORIES,
         icon: "fas fa-tags",
         label: "Ver Categorías",

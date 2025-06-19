@@ -9,3 +9,4 @@ export { useCreateUsuarioVendedor } from "./useCreateUsuarioVendedor";
 export { useUsuariosVendedores } from "./useUsuariosVendedores";
 export { useCreateCasa } from "./useCreateCasa";
 export { useCasas } from "./useCasas";
+export { useListarCasasPublicas } from "./useListarCasasPublicas";
