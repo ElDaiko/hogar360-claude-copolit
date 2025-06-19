@@ -15,7 +15,10 @@ interface UseUbicacionesReturn {
   };
 }
 
-export const useUbicaciones = (page: number = 1, limit: number = 10): UseUbicacionesReturn => {
+export const useUbicaciones = (
+  page: number = 1,
+  limit: number = 10
+): UseUbicacionesReturn => {
   const [ubicaciones, setUbicaciones] = useState<Ubicacion[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,10 +32,10 @@ export const useUbicaciones = (page: number = 1, limit: number = 10): UseUbicaci
   const fetchUbicaciones = useCallback(async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await ubicacionService.getUbicaciones(page, limit);
-      
+
       if (response.success && response.data) {
         setUbicaciones(response.data.data);
         setPagination(response.data.pagination);
@@ -40,7 +43,8 @@ export const useUbicaciones = (page: number = 1, limit: number = 10): UseUbicaci
         setError(response.message || "Error al cargar las ubicaciones");
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Error al cargar las ubicaciones";
+      const errorMessage =
+        err instanceof Error ? err.message : "Error al cargar las ubicaciones";
       setError(errorMessage);
     } finally {
       setLoading(false);

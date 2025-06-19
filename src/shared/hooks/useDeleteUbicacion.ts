@@ -21,14 +21,15 @@ export const useDeleteUbicacion = (): UseDeleteUbicacionReturn => {
 
     try {
       const response = await ubicacionService.deleteUbicacion(id);
-      
+
       if (response.success) {
         setSuccess(true);
       } else {
         throw new Error(response.message);
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Error al eliminar la ubicación";
+      const errorMessage =
+        err instanceof Error ? err.message : "Error al eliminar la ubicación";
       setError(errorMessage);
       throw err;
     } finally {
