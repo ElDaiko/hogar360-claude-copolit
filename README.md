@@ -1,9 +1,11 @@
 # Hogar360 - Plataforma Inmobiliaria
 
 ## Descripción
+
 Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeScript, Vite 5 y TailwindCSS. La plataforma permite a usuarios administradores, vendedores y compradores gestionar propiedades inmobiliarias de manera eficiente.
 
 ## Tecnologías Utilizadas
+
 - **Frontend**: React 18 + TypeScript + Vite 5
 - **Estilos**: TailwindCSS
 - **Arquitectura**: Atomic Design + LIFT
@@ -14,6 +16,7 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 ## Características Implementadas
 
 ### ✅ HU#8 - Autenticación de Usuarios
+
 - Sistema de login con validación
 - Gestión de sesiones con Zustand
 - Rutas protegidas por rol
@@ -43,16 +46,19 @@ src/
 ## Desarrollo
 
 ### Instalación
+
 ```bash
 npm install
 ```
 
 ### Ejecutar en desarrollo
+
 ```bash
 npm run dev
 ```
 
 ### Build para producción
+
 ```bash
 npm run build
 ```
@@ -62,15 +68,18 @@ npm run build
 Este proyecto utiliza GitFlow para el manejo de ramas:
 
 ### Ramas principales:
+
 - `main`: Rama principal de producción
 - `develop`: Rama de desarrollo donde se integran las features
 
 ### Ramas de trabajo:
+
 - `feature/HU-X-nombre`: Ramas para cada Historia de Usuario
 - `release/v*`: Ramas para preparar releases
 - `hotfix/nombre`: Ramas para correcciones urgentes
 
 ### Flujo de trabajo:
+
 1. **Nueva HU**: `git checkout develop && git checkout -b feature/HU-X-nombre`
 2. **Desarrollo**: Desarrollar la funcionalidad en la rama feature
 3. **Commit**: `git add . && git commit -m "feat(HU-X): descripción"`
@@ -80,10 +89,12 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 7. **Cleanup**: Eliminar rama feature
 
 ### Estado actual:
+
 - ✅ **HU#8**: `feature/HU-8-autenticacion` - Completada y mergeada
 - 🔄 **Próxima HU**: Por definir
 
 ### Comandos útiles:
+
 ```bash
 # Ver estado del repositorio
 git status
@@ -119,7 +130,10 @@ git pull origin develop
 ## Licencia
 
 Este proyecto es privado y confidencial.
-    ...reactDom.configs.recommended.rules,
-  },
+...reactDom.configs.recommended.rules,
+},
 })
+
+```
+
 ```
