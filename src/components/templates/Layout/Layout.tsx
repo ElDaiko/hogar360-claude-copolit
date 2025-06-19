@@ -106,7 +106,8 @@ export const Layout = ({ children }: LayoutProps) => {
                       <p className="text-xs text-gray-500 capitalize">
                         {user?.rol}
                       </p>
-                    </div>                    <button
+                    </div>{" "}
+                    <button
                       onClick={handleLogout}
                       disabled={isLoggingOut || isLoading}
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"

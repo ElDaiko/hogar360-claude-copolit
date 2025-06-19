@@ -213,7 +213,7 @@ class UbicacionService {
         success: true,
         data: mockResponse,
         message: "Ubicaciones obtenidas exitosamente",
-      };      // Uncomment this when backend is ready:
+      }; // Uncomment this when backend is ready:
       /*
       // Remember to uncomment the getAuthHeaders import at the top
       const response = await fetch(
