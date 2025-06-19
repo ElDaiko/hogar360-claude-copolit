@@ -89,6 +89,40 @@ export type EstadoPublicacion =
   | "TRANSACCION_CURSO"
   | "TRANSACCION_FINALIZADA";
 
+// Request types for creating houses
+export interface CreateCasaRequest {
+  nombre: string;
+  descripcion: string;
+  categoriaInmuebleId: string;
+  cantidadCuartos: number;
+  cantidadBanos: number;
+  precio: number;
+  ubicacionId: string;
+  fechaPublicacionActiva: string; // formato YYYY-MM-DD
+  estadoPublicacion: EstadoPublicacion;
+  area?: number;
+  imagenes?: string[];
+}
+
+export interface CreateCasaResponse {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  categoriaInmueble: CategoriaInmueble;
+  cantidadCuartos: number;
+  cantidadBanos: number;
+  precio: number;
+  ubicacion: Ubicacion;
+  fechaPublicacionActiva: string;
+  estadoPublicacion: EstadoPublicacion;
+  fechaPublicacion: string;
+  vendedorId: string;
+  imagenes?: string[];
+  area?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Visit schedule types
 export interface HorarioDisponible {
   id: string;

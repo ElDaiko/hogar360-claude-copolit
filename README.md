@@ -96,6 +96,29 @@ Hogar360 es una plataforma inmobiliaria moderna desarrollada con React 18, TypeS
 - Integración completa con sidebar de navegación
 - Documentación completa de usuarios por defecto (USUARIOS_VENDEDORES.md)
 
+### ✅ HU#6 - Publicación de Propiedades
+
+- Funcionalidad completa para que vendedores publiquen casas
+- Formulario de publicación con todos los campos requeridos:
+  - Nombre, descripción, categoría de inmueble
+  - Cantidad de cuartos y baños, precio
+  - Ubicación (ciudad y departamento)
+  - Fecha de publicación con validación (no mayor a un mes)
+- Estados de publicación: PUBLICADA, PUBLICACION_PAUSADA, TRANSACCION_CURSO, TRANSACCION_FINALIZADA
+- Validaciones completas con Zod y React Hook Form
+- Gestión de propiedades del vendedor con listado paginado
+- Acciones disponibles: eliminar casa y cambiar estado de publicación
+- UI responsiva: tabla en desktop + tarjetas en móvil
+- Navegación separada: "Mis Propiedades" y "Publicar Casa"
+- Rutas protegidas para vendedores: `/vendedor/casas` y `/vendedor/publicar-casa`
+- Modales de confirmación y advertencia para todas las acciones
+- Feedback visual completo con mensajes de éxito y error
+- Hooks reutilizables: `useCasas`, `useCreateCasa`
+- Servicio mock con CRUD completo y lógica de negocio
+- Tipos TypeScript: `Casa`, `CreateCasaRequest`, `CreateCasaResponse`
+- Integración completa con componentes existentes del sistema
+- 12 casas por defecto para desarrollo/pruebas
+
 ## Estructura del Proyecto
 
 ```
@@ -110,6 +133,8 @@ src/
 │   ├── UbicacionesPage.tsx
 │   ├── BuscarUbicacionesPage.tsx
 │   ├── UsuariosVendedoresPage.tsx
+│   ├── CasasPage.tsx
+│   ├── PublicarCasaPage.tsx
 │   ├── LoginPage.tsx
 │   └── DashboardPage.tsx
 ├── shared/              # Recursos compartidos
@@ -123,19 +148,23 @@ src/
 │   │   ├── useDeleteUbicacion.ts
 │   │   ├── useSearchUbicaciones.ts
 │   │   ├── useCreateUsuarioVendedor.ts
-│   │   └── useUsuariosVendedores.ts
+│   │   ├── useUsuariosVendedores.ts
+│   │   ├── useCasas.ts
+│   │   └── useCreateCasa.ts
 │   ├── store/          # Estado global (Zustand)
 │   ├── types/          # Tipos TypeScript
 │   └── validations/    # Esquemas de validación
 │       ├── authSchemas.ts
 │       ├── categoriaSchemas.ts
 │       ├── ubicacionSchemas.ts
-│       └── usuarioSchemas.ts
+│       ├── usuarioSchemas.ts
+│       └── casaSchemas.ts
 └── services/           # Servicios y API calls
     ├── authService.ts
     ├── categoriaService.ts
     ├── ubicacionService.ts
-    └── usuarioService.ts
+    ├── usuarioService.ts
+    └── casaService.ts
 ```
 
 ## Desarrollo
@@ -190,8 +219,9 @@ Este proyecto utiliza GitFlow para el manejo de ramas:
 - ✅ **HU#2**: `feature/HU-2-listar-categorias` - Completada y mergeada
 - ✅ **HU#3**: `feature/HU-3-crear-ubicaciones` - Completada y mergeada
 - ✅ **HU#4**: `feature/HU-4-buscar-ubicaciones` - Completada y mergeada
-- ✅ **HU#5**: `feature/HU-5-crear-usuario-vendedor` - Completada y lista para review
-- 🔄 **Próxima HU**: HU#6 - Publicación de Propiedades
+- ✅ **HU#5**: `feature/HU-5-crear-usuario-vendedor` - Completada y mergeada
+- ✅ **HU#6**: `feature/HU-6-publicar-casa` - Completada y lista para push
+- 🔄 **Próxima HU**: HU#7 - Búsqueda de Propiedades
 
 ### Comandos útiles:
 
@@ -217,8 +247,8 @@ git pull origin develop
 - ✅ HU#3: Gestión de Ubicaciones - **COMPLETADA**
 - ✅ HU#4: Búsqueda de Ubicaciones - **COMPLETADA**
 - ✅ HU#5: Gestión de Usuarios Vendedores - **COMPLETADA**
-- 🔄 HU#6: Publicación de Propiedades
-- HU#7: Búsqueda de Propiedades
+- ✅ HU#6: Publicación de Propiedades - **COMPLETADA**
+- 🔄 HU#7: Búsqueda de Propiedades
 - HU#8: Agendar Visitas
 - HU#9: Gestión de Horarios
 
