@@ -57,7 +57,8 @@ const mockUbicaciones: Ubicacion[] = [
       "Departamento del Caribe con gran riqueza histórica, cultural y turística.",
     createdAt: "2024-01-15T10:20:00.000Z",
     updatedAt: "2024-01-15T10:20:00.000Z",
-  },  {
+  },
+  {
     id: "6",
     ciudad: "Bucaramanga",
     departamento: "Santander",
@@ -124,7 +125,9 @@ class UbicacionService {
       // Simulate backend call with mock data
       // Check if departamento already exists
       const existingDepartamento = mockUbicaciones.find(
-        (ubicacion) => ubicacion.departamento.toLowerCase() === data.departamento.toLowerCase()
+        (ubicacion) =>
+          ubicacion.departamento.toLowerCase() ===
+          data.departamento.toLowerCase()
       );
 
       if (existingDepartamento) {
@@ -174,7 +177,7 @@ class UbicacionService {
       const startIndex = (page - 1) * limit;
       const endIndex = startIndex + limit;
       const paginatedData = mockUbicaciones.slice(startIndex, endIndex);
-      
+
       const mockResponse: GetUbicacionesResponse = {
         data: paginatedData,
         pagination: {
@@ -230,7 +233,7 @@ class UbicacionService {
     try {
       // Simulate backend call with mock data
       const ubicacion = mockUbicaciones.find((u) => u.id === id);
-      
+
       if (!ubicacion) {
         return {
           success: false,
@@ -260,8 +263,10 @@ class UbicacionService {
   ): Promise<ApiResponse<Ubicacion>> {
     try {
       // Simulate backend call with mock data
-      const index = mockUbicaciones.findIndex((ubicacion) => ubicacion.id === id);
-      
+      const index = mockUbicaciones.findIndex(
+        (ubicacion) => ubicacion.id === id
+      );
+
       if (index === -1) {
         return {
           success: false,
@@ -271,7 +276,10 @@ class UbicacionService {
 
       // Check if departamento already exists in another ubicacion
       const existingDepartamento = mockUbicaciones.find(
-        (ubicacion) => ubicacion.id !== id && ubicacion.departamento.toLowerCase() === data.departamento.toLowerCase()
+        (ubicacion) =>
+          ubicacion.id !== id &&
+          ubicacion.departamento.toLowerCase() ===
+            data.departamento.toLowerCase()
       );
 
       if (existingDepartamento) {
@@ -312,8 +320,10 @@ class UbicacionService {
   async deleteUbicacion(id: string): Promise<ApiResponse<void>> {
     try {
       // Simulate backend call with mock data
-      const index = mockUbicaciones.findIndex((ubicacion) => ubicacion.id === id);
-      
+      const index = mockUbicaciones.findIndex(
+        (ubicacion) => ubicacion.id === id
+      );
+
       if (index === -1) {
         return {
           success: false,

@@ -19,10 +19,12 @@ export const UbicacionesPage = () => {
     useCreateUbicacion();
   const [ubicaciones, setUbicaciones] = useState<Ubicacion[]>([]);
   const [loadingUbicaciones, setLoadingUbicaciones] = useState(false);
-  
+
   // Modal states
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [ubicacionToDelete, setUbicacionToDelete] = useState<Ubicacion | null>(null);
+  const [ubicacionToDelete, setUbicacionToDelete] = useState<Ubicacion | null>(
+    null
+  );
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -65,7 +67,7 @@ export const UbicacionesPage = () => {
   const handleCreateUbicacion = async (data: CreateUbicacionForm) => {
     try {
       await createUbicacion(data);
-      
+
       // If successful, reload locations and reset form
       if (!error) {
         const response = await ubicacionService.getUbicaciones(1, 50);
@@ -74,7 +76,7 @@ export const UbicacionesPage = () => {
         }
         reset();
       }
-      
+
       // Check if it's a duplicate department error
       if (error && error.toLowerCase().includes("ya existe")) {
         setShowDuplicateModal(true);
@@ -84,7 +86,8 @@ export const UbicacionesPage = () => {
       }
       clearMessages();
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : "Error al crear la ubicación";
+      const errorMsg =
+        err instanceof Error ? err.message : "Error al crear la ubicación";
       setErrorMessage(errorMsg);
       setShowErrorModal(true);
       clearMessages();
@@ -102,10 +105,15 @@ export const UbicacionesPage = () => {
 
     setDeleteLoading(true);
     try {
-      const response = await ubicacionService.deleteUbicacion(ubicacionToDelete.id);
+      const response = await ubicacionService.deleteUbicacion(
+        ubicacionToDelete.id
+      );
       if (response.success) {
         // Reload locations
-        const ubicacionesResponse = await ubicacionService.getUbicaciones(1, 50);
+        const ubicacionesResponse = await ubicacionService.getUbicaciones(
+          1,
+          50
+        );
         if (ubicacionesResponse.success && ubicacionesResponse.data) {
           setUbicaciones(ubicacionesResponse.data.data);
         }
@@ -116,7 +124,8 @@ export const UbicacionesPage = () => {
         setShowErrorModal(true);
       }
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : "Error al eliminar la ubicación";
+      const errorMsg =
+        err instanceof Error ? err.message : "Error al eliminar la ubicación";
       setErrorMessage(errorMsg);
       setShowErrorModal(true);
     } finally {
@@ -173,7 +182,10 @@ export const UbicacionesPage = () => {
         {/* Create Location Form */}
         <div className="px-8">
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <form onSubmit={handleSubmit(handleCreateUbicacion)} className="space-y-6">
+            <form
+              onSubmit={handleSubmit(handleCreateUbicacion)}
+              className="space-y-6"
+            >
               {/* Success Message */}
               {success && (
                 <div className="p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg">
@@ -218,7 +230,8 @@ export const UbicacionesPage = () => {
                     htmlFor="departamento"
                     className="block text-sm font-normal text-gray-700 mb-1"
                   >
-                    Nombre del Departamento <span className="text-red-500">*</span>
+                    Nombre del Departamento{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -246,7 +259,8 @@ export const UbicacionesPage = () => {
                   htmlFor="descripcionCiudad"
                   className="block text-sm font-normal text-gray-700 mb-1"
                 >
-                  Descripción de la Ciudad <span className="text-red-500">*</span>
+                  Descripción de la Ciudad{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <div>
                   <textarea
@@ -254,7 +268,9 @@ export const UbicacionesPage = () => {
                     rows={3}
                     {...register("descripcionCiudad")}
                     className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none placeholder-gray-400 ${
-                      errors.descripcionCiudad ? "border-red-300" : "border-gray-300"
+                      errors.descripcionCiudad
+                        ? "border-red-300"
+                        : "border-gray-300"
                     }`}
                     placeholder="Describe las características de la ciudad"
                     maxLength={120}
@@ -279,7 +295,8 @@ export const UbicacionesPage = () => {
                   htmlFor="descripcionDepartamento"
                   className="block text-sm font-normal text-gray-700 mb-1"
                 >
-                  Descripción del Departamento <span className="text-red-500">*</span>
+                  Descripción del Departamento{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <div>
                   <textarea
@@ -287,7 +304,9 @@ export const UbicacionesPage = () => {
                     rows={3}
                     {...register("descripcionDepartamento")}
                     className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none placeholder-gray-400 ${
-                      errors.descripcionDepartamento ? "border-red-300" : "border-gray-300"
+                      errors.descripcionDepartamento
+                        ? "border-red-300"
+                        : "border-gray-300"
                     }`}
                     placeholder="Describe las características del departamento"
                     maxLength={120}
@@ -364,7 +383,10 @@ export const UbicacionesPage = () => {
                   </tr>
                 ) : ubicaciones.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-6 py-8 text-center text-gray-500">
+                    <td
+                      colSpan={6}
+                      className="px-6 py-8 text-center text-gray-500"
+                    >
                       No hay ubicaciones registradas
                     </td>
                   </tr>

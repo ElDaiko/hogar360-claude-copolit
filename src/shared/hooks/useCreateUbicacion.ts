@@ -23,7 +23,8 @@ export const useCreateUbicacion = () => {
         throw new Error(response.message);
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Error al crear la ubicación";
+      const errorMessage =
+        err instanceof Error ? err.message : "Error al crear la ubicación";
       setError(errorMessage);
       throw err;
     } finally {
