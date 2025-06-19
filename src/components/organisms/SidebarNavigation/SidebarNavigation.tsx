@@ -18,7 +18,6 @@ export const SidebarNavigation = ({
   onToggle,
 }: SidebarNavigationProps) => {
   const { user, hasRole } = useAuth();
-
   // Menu items based on user role
   const getMenuItems = (): MenuItem[] => {
     if (!user) return [];
@@ -29,13 +28,18 @@ export const SidebarNavigation = ({
         icon: "fas fa-home",
         label: "Dashboard",
       },
+      {
+        to: ROUTES.CATEGORIES,
+        icon: "fas fa-tags",
+        label: "Ver Categorías",
+      },
     ];
 
     const adminItems: MenuItem[] = [
       {
         to: ROUTES.ADMIN_CATEGORIES,
-        icon: "fas fa-tags",
-        label: "Categorías",
+        icon: "fas fa-cog",
+        label: "Gestionar Categorías",
       },
       {
         to: ROUTES.ADMIN_LOCATIONS,

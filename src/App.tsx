@@ -7,6 +7,7 @@ import {
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { CategoriasPage } from "./pages/CategoriasPage";
+import { ListarCategoriasPage } from "./pages/ListarCategoriasPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -23,6 +24,16 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* HU#2 - List Categories (All Roles) */}
+        <Route
+          path={ROUTES.CATEGORIES}
+          element={
+            <ProtectedRoute>
+              <ListarCategoriasPage />
             </ProtectedRoute>
           }
         />
