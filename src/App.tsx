@@ -9,6 +9,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { CategoriasPage } from "./pages/CategoriasPage";
 import { ListarCategoriasPage } from "./pages/ListarCategoriasPage";
 import { UbicacionesPage } from "./pages/UbicacionesPage";
+import { BuscarUbicacionesPage } from "./pages/BuscarUbicacionesPage";
 import { ProtectedRoute } from "./components/atoms/ProtectedRoute";
 import { ROUTES } from "./shared/constants";
 
@@ -26,7 +27,7 @@ function App() {
               <DashboardPage />
             </ProtectedRoute>
           }
-        />
+        />{" "}
         {/* HU#2 - List Categories (All Roles) */}
         <Route
           path={ROUTES.CATEGORIES}
@@ -35,7 +36,16 @@ function App() {
               <ListarCategoriasPage />
             </ProtectedRoute>
           }
-        />{" "}
+        />
+        {/* HU#4 - Search Locations (All Roles) */}
+        <Route
+          path={ROUTES.SEARCH_LOCATIONS}
+          element={
+            <ProtectedRoute>
+              <BuscarUbicacionesPage />
+            </ProtectedRoute>
+          }
+        />
         {/* Admin Routes - HU#1 */}
         <Route
           path={ROUTES.ADMIN_CATEGORIES}

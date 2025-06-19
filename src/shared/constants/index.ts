@@ -52,6 +52,7 @@ export const ROUTES = {
   PROPERTY_EDIT: (id: string) => `/propiedades/${id}/editar`,
   CATEGORIES: "/categorias",
   LOCATIONS: "/ubicaciones",
+  SEARCH_LOCATIONS: "/buscar-ubicaciones",
   VISITS: "/visitas",
   SCHEDULE_VISIT: (casaId: string) => `/visitas/agendar/${casaId}`,
   PROFILE: "/perfil",
