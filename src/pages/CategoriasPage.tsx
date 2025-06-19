@@ -6,6 +6,7 @@ import { useCreateCategoria } from "../shared/hooks/useCreateCategoria";
 import { categoriaService } from "../services/categoriaService";
 import { Layout } from "../components/templates/Layout";
 import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
+import { WarningModal } from "../components/molecules/WarningModal";
 import {
   createCategoriaSchema,
   type CreateCategoriaForm,
@@ -64,6 +65,17 @@ export const CategoriasPage = () => {
     clearMessages();
   }, [clearMessages]);
   const handleCreateCategoria = async (data: CreateCategoriaForm) => {
+    // Check for duplicate names locally first
+    const isDuplicateName = categorias.some(
+      (categoria) =>
+        categoria.nombre.toLowerCase() === data.nombre.toLowerCase()
+    );
+
+    if (isDuplicateName) {
+      setShowDuplicateModal(true);
+      return;
+    }
+
     const success = await createCategoria(data);
     if (success) {
       reset();
@@ -73,7 +85,7 @@ export const CategoriasPage = () => {
         setCategorias(response.data);
       }
     } else if (error) {
-      // Check if error is about duplicate name
+      // Check if error is about duplicate name from server
       if (
         error.toLowerCase().includes("nombre") &&
         (error.toLowerCase().includes("repetir") ||
@@ -162,102 +174,104 @@ export const CategoriasPage = () => {
   }
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="px-8 py-6 space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="px-8">
           <h1 className="text-2xl font-normal text-gray-800">
             Crear Categoría
           </h1>
         </div>
         {/* Create Category Form */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <form
-            onSubmit={handleSubmit(handleCreateCategoria)}
-            className="space-y-6"
-          >
-            {" "}
-            {/* Success Message */}
-            {success && (
-              <div className="p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg">
-                <div className="flex items-center">
-                  <i className="fas fa-check-circle mr-2"></i>
-                  {success}
+        <div className="px-8">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <form
+              onSubmit={handleSubmit(handleCreateCategoria)}
+              className="space-y-6"
+            >
+              {" "}
+              {/* Success Message */}
+              {success && (
+                <div className="p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg">
+                  <div className="flex items-center">
+                    <i className="fas fa-check-circle mr-2"></i>
+                    {success}
+                  </div>
                 </div>
-              </div>
-            )}
-            {/* Nombre Field */}
-            <div>
-              <label
-                htmlFor="nombre"
-                className="block text-sm font-normal text-gray-700 mb-1"
-              >
-                Nombre de la Categoría <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="nombre"
-                {...register("nombre")}
-                className={`w-full px-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 ${
-                  errors.nombre ? "border-red-300" : "border-gray-300"
-                }`}
-                placeholder="Escribe el nombre de la categoría (máximo 50 caracteres)"
-                maxLength={50}
-                disabled={loading}
-              />
-              {errors.nombre && (
-                <p className="text-red-600 text-sm mt-1 flex items-center">
-                  <i className="fas fa-exclamation-triangle mr-1"></i>
-                  {errors.nombre.message}
-                </p>
               )}
-            </div>
-            {/* Descripción Field */}
-            <div>
-              <label
-                htmlFor="descripcion"
-                className="block text-sm font-normal text-gray-700 mb-1"
-              >
-                Descripción <span className="text-red-500">*</span>
-              </label>
+              {/* Nombre Field */}
               <div>
-                <textarea
-                  id="descripcion"
-                  rows={4}
-                  {...register("descripcion")}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none placeholder-gray-400 ${
-                    errors.descripcion ? "border-red-300" : "border-gray-300"
+                <label
+                  htmlFor="nombre"
+                  className="block text-sm font-normal text-gray-700 mb-1"
+                >
+                  Nombre de la Categoría <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  {...register("nombre")}
+                  className={`w-full px-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 ${
+                    errors.nombre ? "border-red-300" : "border-gray-300"
                   }`}
-                  placeholder="Enter category description"
-                  maxLength={90}
+                  placeholder="Escribe el nombre de la categoría (máximo 50 caracteres)"
+                  maxLength={50}
                   disabled={loading}
                 />
-                <div className="flex justify-end mt-1 text-sm text-gray-500">
-                  <span>{descripcion?.length || 0}</span>
-                  <span>/90</span>
-                </div>
+                {errors.nombre && (
+                  <p className="text-red-600 text-sm mt-1 flex items-center">
+                    <i className="fas fa-exclamation-triangle mr-1"></i>
+                    {errors.nombre.message}
+                  </p>
+                )}
               </div>
-              {errors.descripcion && (
-                <p className="text-red-600 text-sm mt-1 flex items-center">
-                  <i className="fas fa-exclamation-triangle mr-1"></i>
-                  {errors.descripcion.message}
-                </p>
-              )}
-            </div>
-            {/* Submit Button */}
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-normal py-2 px-6 rounded-lg transition-colors"
-              >
-                {loading ? "Creando..." : "Crear"}
-              </button>
-            </div>
-          </form>
+              {/* Descripción Field */}
+              <div>
+                <label
+                  htmlFor="descripcion"
+                  className="block text-sm font-normal text-gray-700 mb-1"
+                >
+                  Descripción <span className="text-red-500">*</span>
+                </label>
+                <div>
+                  <textarea
+                    id="descripcion"
+                    rows={4}
+                    {...register("descripcion")}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none placeholder-gray-400 ${
+                      errors.descripcion ? "border-red-300" : "border-gray-300"
+                    }`}
+                    placeholder="Enter category description"
+                    maxLength={90}
+                    disabled={loading}
+                  />
+                  <div className="flex justify-end mt-1 text-sm text-gray-500">
+                    <span>{descripcion?.length || 0}</span>
+                    <span>/90</span>
+                  </div>
+                </div>
+                {errors.descripcion && (
+                  <p className="text-red-600 text-sm mt-1 flex items-center">
+                    <i className="fas fa-exclamation-triangle mr-1"></i>
+                    {errors.descripcion.message}
+                  </p>
+                )}
+              </div>
+              {/* Submit Button */}
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-normal py-2 px-6 rounded-lg transition-colors"
+                >
+                  {loading ? "Creando..." : "Crear"}
+                </button>
+              </div>{" "}
+            </form>
+          </div>
         </div>
         {/* Existing Categories Section */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-medium text-gray-900">
+        <div className="px-8">
+          <h2 className="text-lg font-medium text-gray-900 mb-4">
             Categorías existentes
           </h2>
 
@@ -372,16 +386,14 @@ export const CategoriasPage = () => {
           confirmText="Entendido"
           cancelText="Cerrar"
           type="warning"
-        />
+        />{" "}
         {/* Duplicate Name Modal */}
-        <ConfirmDialog
+        <WarningModal
           isOpen={showDuplicateModal}
           onClose={handleDuplicateModalClose}
-          onConfirm={handleDuplicateModalClose}
-          title="Nombre Duplicado"
-          message="Ya existe una categoría con este nombre. Por favor, elige un nombre diferente para la categoría."
+          title="⚠️ Nombre Duplicado"
+          message="Ya existe una categoría con este nombre. Por favor, elige un nombre diferente para crear una nueva categoría."
           confirmText="Entendido"
-          type="warning"
         />
       </div>
     </Layout>

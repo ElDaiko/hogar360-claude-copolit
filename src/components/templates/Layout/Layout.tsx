@@ -28,51 +28,38 @@ export const Layout = ({ children }: LayoutProps) => {
     logout();
     setIsUserMenuOpen(false);
   };
-
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50">
       {/* Mobile Sidebar Overlay */}
       {isMobileSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
           onClick={() => setIsMobileSidebarOpen(false)}
         />
-      )}
-
-      {/* Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 z-40 lg:relative lg:flex lg:flex-shrink-0 transition-transform duration-300 ${
-          isMobileSidebarOpen
-            ? "translate-x-0"
-            : "-translate-x-full lg:translate-x-0"
-        }`}
-      >
-        <SidebarNavigation
-          isCollapsed={isSidebarCollapsed}
-          onToggle={toggleSidebar}
-        />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
-        {/* Top Header */}
-        <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center">
-          {/* Left side - Mobile menu button and logo */}
+      )}{" "}
+      {/* Top Header - Full Width */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 h-14">
+        <div className="h-full px-3 flex items-center justify-between">
+          {/* Left side - Logo and mobile menu */}
           <div className="flex items-center">
             <button
               onClick={toggleMobileSidebar}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors lg:hidden mr-3"
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors lg:hidden mr-2"
             >
               <i className="fas fa-bars text-gray-600"></i>
             </button>
 
-            {/* Logo for mobile */}
-            <div className="lg:hidden">
-              <h1 className="text-lg font-semibold text-black">Hogar 360</h1>
+            {/* Logo - Always visible */}
+            <div className="flex items-center">
+              <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center mr-2">
+                <i className="fas fa-home text-white text-xs"></i>
+              </div>
+              <h1 className="text-sm font-normal text-black">Hogar 360</h1>
             </div>
-          </div>{" "}
+          </div>
+
           {/* Right side - User section */}
-          <div className="flex items-center space-x-3 ml-auto">
+          <div className="flex items-center space-x-3">
             <span className="text-sm text-gray-600 hidden sm:block">
               Bienvenido, {user?.nombre || "Admin"}
             </span>
@@ -119,10 +106,28 @@ export const Layout = ({ children }: LayoutProps) => {
               )}
             </div>
           </div>
-        </header>
+        </div>
+      </header>{" "}
+      {/* Layout Container */}
+      <div className="pt-14 flex">
+        {/* Sidebar */}
+        <div
+          className={`fixed top-14 inset-y-0 left-0 z-40 lg:relative lg:flex lg:flex-shrink-0 lg:top-0 transition-transform duration-300 ${
+            isMobileSidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full lg:translate-x-0"
+          }`}
+        >
+          <SidebarNavigation
+            isCollapsed={isSidebarCollapsed}
+            onToggle={toggleSidebar}
+          />
+        </div>
 
-        {/* Page Content */}
-        <main className="flex-1 overflow-auto">{children}</main>
+        {/* Main Content */}
+        <div className="flex-1 min-w-0">
+          <main className="min-h-screen overflow-auto">{children}</main>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { useAuth } from "../../../shared/hooks/useAuth";
 import { ROUTES } from "../../../shared/constants";
-import { Logo } from "../../atoms/Logo";
 import { SidebarItem } from "../../atoms/SidebarItem";
 
 interface SidebarNavigationProps {
@@ -100,33 +99,29 @@ export const SidebarNavigation = ({
   };
 
   const menuItems = getMenuItems();
-
   return (
     <div
       className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
         isCollapsed ? "w-16" : "w-64"
-      }`}
+      } h-full`}
     >
-      {" "}
-      {/* Header */}
-      <div className="p-4 border-b border-gray-200">
-        <div className="flex items-center justify-between">
-          <Logo size="md" showText={!isCollapsed} />
-          <button
-            onClick={onToggle}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            title={isCollapsed ? "Expandir sidebar" : "Contraer sidebar"}
-          >
-            <i
-              className={`fas ${
-                isCollapsed ? "fa-chevron-right" : "fa-chevron-left"
-              } text-gray-600`}
-            ></i>
-          </button>
-        </div>
+      {/* Toggle Button - At the top, subtle */}
+      <div className="p-3 border-b border-gray-100">
+        <button
+          onClick={onToggle}
+          className="w-full p-2 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center"
+          title={isCollapsed ? "Expandir sidebar" : "Contraer sidebar"}
+        >
+          <i
+            className={`fas ${
+              isCollapsed ? "fa-chevron-right" : "fa-chevron-left"
+            } text-gray-400 text-sm`}
+          ></i>
+        </button>
       </div>
+
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-3 pt-5 space-y-1">
         {menuItems.map((item) => (
           <SidebarItem
             key={item.to}
