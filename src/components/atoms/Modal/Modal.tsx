@@ -25,12 +25,12 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
+      {" "}
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+        className="fixed inset-0 bg-blue-500/20 backdrop-blur-md transition-all duration-300"
         onClick={onClose}
       />
-
       {/* Modal */}
       <div className="flex min-h-full items-center justify-center p-4">
         <div
